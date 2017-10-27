@@ -1,0 +1,159 @@
+alumno@alumno-VirtualBox:~$ scp
+usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]
+           [-l limit] [-o ssh_option] [-P port] [-S program]
+           [[user@]host1:]file1 ... [[user@]host2:]file2
+alumno@alumno-VirtualBox:~$ systemctl status ssh
+● ssh.service - OpenBSD Secure Shell server
+   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enab
+   Active: active (running) since vie 2017-10-27 09:21:50 ART; 29min ago
+ Main PID: 3524 (sshd)
+    Tasks: 1 (limit: 4915)
+   CGroup: /system.slice/ssh.service
+           └─3524 /usr/sbin/sshd -D
+
+oct 27 09:21:50 alumno-VirtualBox systemd[1]: Starting OpenBSD Secure Shell serv
+oct 27 09:21:50 alumno-VirtualBox sshd[3524]: Server listening on 0.0.0.0 port 2
+oct 27 09:21:50 alumno-VirtualBox sshd[3524]: Server listening on :: port 22.
+oct 27 09:21:50 alumno-VirtualBox systemd[1]: Started OpenBSD Secure Shell serve
+oct 27 09:34:23 alumno-VirtualBox sshd[3854]: Accepted password for alumno from 
+oct 27 09:34:23 alumno-VirtualBox sshd[3854]: pam_unix(sshd:session): session op
+oct 27 09:42:22 alumno-VirtualBox sshd[3959]: Accepted password for alumno from 
+oct 27 09:42:22 alumno-VirtualBox sshd[3959]: pam_unix(sshd:session): session op
+alumno@alumno-VirtualBox:~$ ls /tmp
+config-err-c2v8Sl
+config-err-U7MXQs
+systemd-private-95fa971d21014bca885faf103f1ceb3c-rtkit-daemon.service-o56NtZ
+alumno@alumno-VirtualBox:~$ ls /tmp
+config-err-c2v8Sl
+config-err-U7MXQs
+systemd-private-95fa971d21014bca885faf103f1ceb3c-rtkit-daemon.service-o56NtZ
+xampp-linux-x64-7.1.10-0-installer.run
+alumno@alumno-VirtualBox:~$ scp /tmp/^C
+alumno@alumno-VirtualBox:~$ ls /tmp/xampp-linux-x64-7.1.10-0-installer.run alumno@192.168.3.119:/tmp/
+ls: no se puede acceder a 'alumno@192.168.3.119:/tmp/': No existe el archivo o el directorio
+/tmp/xampp-linux-x64-7.1.10-0-installer.run
+alumno@alumno-VirtualBox:~$ scp /tmp/xampp-linux-x64-7.1.10-0-installer.run alumno@192.168.3.119:/tmp/
+The authenticity of host '192.168.3.119 (192.168.3.119)' can't be established.
+ECDSA key fingerprint is SHA256:jc+PrIKObap1qaNNDLJkugmCh4cEDCqWsSxXzzFVggY.
+Are you sure you want to continue connecting (yes/no)? y       
+Please type 'yes' or 'no': yes
+Warning: Permanently added '192.168.3.119' (ECDSA) to the list of known hosts.
+alumno@192.168.3.119's password: 
+xampp-linux-x64-7.1.10-0-installer.run                                                                                                                       100%  131MB  10.6MB/s   00:12    
+alumno@alumno-VirtualBox:~$ scp /tmp/xampp-linux-x64-7.1.10-0-installer.run alumno@192.168.3.105:/tmp/
+The authenticity of host '192.168.3.105 (192.168.3.105)' can't be established.
+ECDSA key fingerprint is SHA256:0SEK99gyO6Wdob+DQD9spOOomTIL6ih/EdhEtcgdJ+I.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.3.105' (ECDSA) to the list of known hosts.
+alumno@192.168.3.105's password: 
+xampp-linux-x64-7.1.10-0-installer.run                                                                                                                       100%  131MB   8.7MB/s   00:15    
+alumno@alumno-VirtualBox:~$ ls -l /tmp
+total 134364
+-rw------- 1 alumno alumno         0 oct 27 09:17 config-err-c2v8Sl
+-rw------- 1 alumno alumno         0 oct 27 09:50 config-err-U7MXQs
+drwx------ 3 root   root        4096 oct 27 09:17 systemd-private-95fa971d21014bca885faf103f1ceb3c-rtkit-daemon.service-o56NtZ
+-rw-rw-r-- 1 alumno alumno 137577889 oct 27 09:53 xampp-linux-x64-7.1.10-0-installer.run
+alumno@alumno-VirtualBox:~$ sudo su
+[sudo] password for alumno: 
+root@alumno-VirtualBox:/home/alumno# alumno
+alumno: no se encontró la orden
+root@alumno-VirtualBox:/home/alumno# chmod +x /tmp/xampp-linux-x64-7.1.10-0-installer.run 
+root@alumno-VirtualBox:/home/alumno# cd /tmp/
+root@alumno-VirtualBox:/tmp# ./xampp-linux-x64-7.1.10-0-installer.run 
+root@alumno-VirtualBox:/tmp# sftp alumno@192.168.3.119 
+The authenticity of host '192.168.3.119 (192.168.3.119)' can't be established.
+ECDSA key fingerprint is SHA256:jc+PrIKObap1qaNNDLJkugmCh4cEDCqWsSxXzzFVggY.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.3.119' (ECDSA) to the list of known hosts.
+alumno@192.168.3.119's password: 
+Connected to 192.168.3.119.
+sftp> help
+Available commands:
+bye                                Quit sftp
+cd path                            Change remote directory to 'path'
+chgrp grp path                     Change group of file 'path' to 'grp'
+chmod mode path                    Change permissions of file 'path' to 'mode'
+chown own path                     Change owner of file 'path' to 'own'
+df [-hi] [path]                    Display statistics for current directory or
+                                   filesystem containing 'path'
+exit                               Quit sftp
+get [-afPpRr] remote [local]       Download file
+reget [-fPpRr] remote [local]      Resume download file
+reput [-fPpRr] [local] remote      Resume upload file
+help                               Display this help text
+lcd path                           Change local directory to 'path'
+lls [ls-options [path]]            Display local directory listing
+lmkdir path                        Create local directory
+ln [-s] oldpath newpath            Link remote file (-s for symlink)
+lpwd                               Print local working directory
+ls [-1afhlnrSt] [path]             Display remote directory listing
+lumask umask                       Set local umask to 'umask'
+mkdir path                         Create remote directory
+progress                           Toggle display of progress meter
+put [-afPpRr] local [remote]       Upload file
+pwd                                Display remote working directory
+quit                               Quit sftp
+rename oldpath newpath             Rename remote file
+rm path                            Delete remote file
+rmdir path                         Remove remote directory
+symlink oldpath newpath            Symlink remote file
+version                            Show SFTP version
+!command                           Execute 'command' in local shell
+!                                  Escape to local shell
+?                                  Synonym for help
+sftp> put /
+bin/         boot/        cdrom/       dev/         etc/         home/        initrd.img   lib/         lib64/       lost+found/  media/       mnt/         opt/         proc/        
+root/        run/         sbin/        snap/        srv/         sys/         tmp/         usr/         var/         vmlinuz      
+sftp> put /root/De
+Descargas/  Desktop/    
+sftp> put /root/Descargas/
+Uploading /root/Descargas/ to /home/alumno/Descargas
+/root/Descargas/ is not a regular file
+sftp> put /android-icon.jpg 
+Uploading /android-icon.jpg to /home/alumno/android-icon.jpg
+/android-icon.jpg                                                                                                                                            100%   21KB   3.4MB/s   00:00    
+sftp> mkdir Axel
+sftp> rm Axel/
+Removing /home/alumno/Axel/
+Couldn't delete file: Failure
+sftp> rm Axel/
+Removing /home/alumno/Axel/
+Couldn't delete file: Failure
+sftp> rm -R  Axel/
+rm: Invalid flag -R
+sftp> rm -r Axel/
+rm: Invalid flag -r
+sftp> pwd
+Remote working directory: /home/alumno
+sftp> cd /home/alumno/Axel/
+sftp> ls
+sftp> ls -l
+sftp> cd ..
+sftp> ls
+Axel               Descargas          Documentos         Escritorio         Imágenes          Música            Plantillas         Público           Vídeos            android-icon.jpg   
+sftp> exit
+root@alumno-VirtualBox:/tmp# sftp alumno@192.168.3.137
+The authenticity of host '192.168.3.137 (192.168.3.137)' can't be established.
+ECDSA key fingerprint is SHA256:vS0//c9NeRodgleh02qBsWeeZu1q4IKsfvYiDQ9cMn8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.3.137' (ECDSA) to the list of known hosts.
+alumno@192.168.3.137's password: 
+Connected to 192.168.3.137.
+sftp> put /home/alumno/192.168.3.116.jpg to /home/alumno/Descargas/
+Uploading /home/alumno/192.168.3.116.jpg to /home/alumno/to
+/home/alumno/192.168.3.116.jpg                                                                                                                               100%   21KB   2.9MB/s   00:00    
+sftp> ls
+192.168.3.117.jpg  Descargas          Documentos         Escritorio         Imágenes          Música            Plantillas         Público           Vídeos            to                 
+sftp> ls
+Descargas   Documentos  Escritorio  Imágenes   Música     Plantillas  Público    Vídeos     to          
+sftp> cd Descargas/
+sftp> ls
+192.168.3.107.png                              192.168.3.114.jpg                              192.168.3.117.jpg                              192.168.3.119.png                              
+xampp-linux-x64-7.1.10-0-installer.run         
+sftp> put /home/alumno/192.168.3.116.jpg 
+Uploading /home/alumno/192.168.3.116.jpg to /home/alumno/Descargas/192.168.3.116.jpg
+/home/alumno/192.168.3.116.jpg                                                                                                                               100%   21KB   2.2MB/s   00:00    
+sftp> ls
+192.168.3.107.png                              192.168.3.114.jpg                              192.168.3.116.jpg                              192.168.3.117.jpg                              
+192.168.3.119.png                              192168350.jpg                                  xampp-linux-x64-7.1.10-0-installer.run         
+sftp> 
